@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { AIcon } from '../components/AIcon'
 import { NoteForm, NotesTimeline } from '../components/NotesTimeline'
+import { DetailSkeleton } from '../components/Skeletons'
 import { StatusBadge } from '../components/StatusBadge'
 import { StatusMenu } from '../components/StatusMenu'
 import { ADMIN_ROUTES } from '../config'
@@ -23,7 +24,7 @@ export default function InterestedDetailPage() {
   const { data, setData, loading, error, reload } = useAsync(() => getInterestedById(id), [id])
   const { requestChange, dialog, busyId } = useStatusChange((row) => setData(row))
 
-  if (loading && !data) return <div className="adm-page"><div className="adm-skeleton adm-skeleton--detail" /></div>
+  if (loading && !data) return <DetailSkeleton />
   if (error) return <div className="adm-page"><div className="adm-alert" role="alert">{error} <button type="button" className="adm-linkbtn" onClick={() => reload()}>Reintentar</button></div></div>
   if (!data) {
     return (

@@ -47,7 +47,22 @@ export function Catalog() {
         <p className="catalog__count" aria-live="polite">
           {visible.length} {visible.length === 1 ? 'modelo' : 'modelos'}
         </p>
-        {visible.length > 0 ? (
+        {motos.length === 0 ? (
+          <div className="catalog__grid" role="status" aria-busy="true">
+            <span className="sr-only">Cargando motos…</span>
+            {Array.from({ length: 3 }, (_, i) => (
+              <div key={i} className="moto-card moto-card--skeleton" aria-hidden="true">
+                <div className="moto-card__media"><span className="boot__bar" style={{ width: '100%', height: '100%', borderRadius: 0 }} /></div>
+                <div className="moto-card__body">
+                  <span className="boot__bar" style={{ width: 70, height: 12 }} />
+                  <span className="boot__bar" style={{ width: 160, height: 24, marginTop: 10 }} />
+                  <span className="boot__bar" style={{ width: '90%', height: 14, marginTop: 16 }} />
+                  <span className="boot__bar" style={{ width: '100%', height: 48, marginTop: 28 }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : visible.length > 0 ? (
           <div className="catalog__grid">
             {visible.map((m, i) => (
               <MotoCard key={m.id} moto={m} priority={i < 2} />

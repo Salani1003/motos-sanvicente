@@ -9,6 +9,7 @@ import { Footer } from './sections/Footer'
 import HomePage from './pages/HomePage'
 import MotosPage from './pages/MotosPage'
 import { ROUTES } from './config/site'
+import { AdminBoot } from './components/AdminBoot'
 
 // El panel administrativo se carga bajo demanda y no forma parte del bundle público.
 const AdminApp = lazy(() => import('./admin/AdminApp'))
@@ -38,7 +39,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin/*" element={<Suspense fallback={null}><AdminApp /></Suspense>} />
+        <Route path="/admin/*" element={<Suspense fallback={<AdminBoot />}><AdminApp /></Suspense>} />
         <Route path="*" element={<PublicSite />} />
       </Routes>
     </BrowserRouter>

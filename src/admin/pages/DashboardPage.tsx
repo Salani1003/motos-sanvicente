@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { BarList, LineChart, StatusBreakdown } from '../components/Charts'
 import { InterestedTable } from '../components/InterestedTable'
 import { StatCard } from '../components/StatCard'
+import { BarsSkeleton, ChartSkeleton, LegendSkeleton, TableSkeleton } from '../components/Skeletons'
 import { ADMIN_ROUTES } from '../config'
 import { useAsync } from '../hooks/useAsync'
 import { useStatusChange } from '../hooks/useStatusChange'
@@ -48,19 +49,19 @@ export default function DashboardPage() {
               {RANGES.map((r) => <button key={r} type="button" aria-pressed={days === r} onClick={() => setDays(r)}>{r} días</button>)}
             </div>
           </div>
-          {m ? <LineChart data={m.daily} /> : <div className="adm-skeleton adm-skeleton--chart" />}
+          {m ? <LineChart data={m.daily} /> : <ChartSkeleton />}
         </section>
 
         <section className="adm-panel" aria-labelledby="h-est">
           <div className="adm-panel__head"><h2 id="h-est">Interesados por estado</h2></div>
-          {m ? <StatusBreakdown byStatus={m.byStatus} total={m.total} /> : <div className="adm-skeleton adm-skeleton--chart" />}
+          {m ? <StatusBreakdown byStatus={m.byStatus} total={m.total} /> : <LegendSkeleton />}
         </section>
       </div>
 
       <div className="adm-grid-2 adm-grid-2--rev">
         <section className="adm-panel" aria-labelledby="h-mod">
           <div className="adm-panel__head"><h2 id="h-mod">Modelos más consultados</h2></div>
-          {m ? <BarList rows={m.topModels.map((t) => ({ key: t.motoId, label: t.name, value: t.count }))} /> : <div className="adm-skeleton adm-skeleton--chart" />}
+          {m ? <BarList rows={m.topModels.map((t) => ({ key: t.motoId, label: t.name, value: t.count }))} /> : <BarsSkeleton />}
         </section>
 
         <section className="adm-panel adm-panel--table" aria-labelledby="h-last">
@@ -68,7 +69,7 @@ export default function DashboardPage() {
             <h2 id="h-last">Últimos interesados</h2>
             <Link to={ADMIN_ROUTES.list} className="adm-link">Ver todos</Link>
           </div>
-          {m ? <InterestedTable rows={m.latest} compact busyId={busyId} onChangeStatus={() => undefined} /> : <div className="adm-skeleton adm-skeleton--table" />}
+          {m ? <InterestedTable rows={m.latest} compact busyId={busyId} onChangeStatus={() => undefined} /> : <TableSkeleton rows={6} compact />}
         </section>
       </div>
       {dialog}

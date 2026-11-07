@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { InterestedFilters } from '../components/InterestedFilters'
 import { InterestedTable } from '../components/InterestedTable'
 import { Pagination } from '../components/Pagination'
+import { TableSkeleton } from '../components/Skeletons'
 import { useAsync } from '../hooks/useAsync'
 import { useStatusChange } from '../hooks/useStatusChange'
 import { getInterested } from '../services/interestedService'
@@ -68,7 +69,7 @@ export default function InterestedListPage() {
         {error && (
           <div className="adm-alert" role="alert">{error} <button type="button" className="adm-linkbtn" onClick={() => reload()}>Reintentar</button></div>
         )}
-        {loading && !data && <div className="adm-skeleton adm-skeleton--table" />}
+        {loading && !data && <TableSkeleton rows={query.pageSize && query.pageSize < 10 ? query.pageSize : 10} />}
         {data && (
           <div className={loading ? 'adm-fade' : undefined}>
             {data.items.length === 0 ? (
