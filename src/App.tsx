@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { CatalogProvider } from './context/CatalogContext'
 import { LeadProvider } from './context/LeadContext'
@@ -9,25 +10,37 @@ import HomePage from './pages/HomePage'
 import MotosPage from './pages/MotosPage'
 import { ROUTES } from './config/site'
 
+// El panel administrativo se carga bajo demanda y no forma parte del bundle público.
+const AdminApp = lazy(() => import('./admin/AdminApp'))
+
+function PublicSite() {
+  return (
+    <CatalogProvider>
+      <LeadProvider>
+        <ScrollManager />
+        <a className="skip-link" href="#contenido">Saltar al contenido</a>
+        <Header />
+        <main id="contenido">
+          <Routes>
+            <Route path={ROUTES.home} element={<HomePage />} />
+            <Route path={ROUTES.motos} element={<MotosPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </main>
+        <Footer />
+        <StickyCta />
+      </LeadProvider>
+    </CatalogProvider>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <CatalogProvider>
-        <LeadProvider>
-          <ScrollManager />
-          <a className="skip-link" href="#contenido">Saltar al contenido</a>
-          <Header />
-          <main id="contenido">
-            <Routes>
-              <Route path={ROUTES.home} element={<HomePage />} />
-              <Route path={ROUTES.motos} element={<MotosPage />} />
-              <Route path="*" element={<HomePage />} />
-            </Routes>
-          </main>
-          <Footer />
-          <StickyCta />
-        </LeadProvider>
-      </CatalogProvider>
+      <Routes>
+        <Route path="/admin/*" element={<Suspense fallback={null}><AdminApp /></Suspense>} />
+        <Route path="*" element={<PublicSite />} />
+      </Routes>
     </BrowserRouter>
   )
 }

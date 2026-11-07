@@ -24,3 +24,11 @@ Configuración editable (WhatsApp, Instagram, contacto): copiar `.env.example` a
 - `/motos` catálogo con filtro por marca y búsqueda (`/motos?marca=Honda`, `/motos?q=wave`)
 
 El formulario está en ambas páginas. Al publicar, el hosting debe redirigir todas las rutas a `index.html` (SPA).
+
+## Panel administrativo (demo) — `/admin`
+Sin enlaces desde el sitio público. Autenticación SIMULADA (no es segura).
+- Credenciales de demostración: `admin@sanvicente.demo` / `demo1234`
+- Rutas: `/admin/login`, `/admin/dashboard`, `/admin/interesados`, `/admin/interesados/:id`
+- Código en `src/admin/` (cargado bajo demanda). Datos ficticios en `src/admin/mock/interested.ts`.
+- Capa de servicios (único punto a reemplazar por la API): `src/admin/services/interestedService.ts`
+- Los cambios viven en memoria: se pierden al recargar la página.
