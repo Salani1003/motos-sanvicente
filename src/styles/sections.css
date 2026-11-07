@@ -1,0 +1,446 @@
+.section {
+  padding-block: 72px;
+}
+@media (min-width: 900px) {
+  .section {
+    padding-block: 112px;
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding-top: 40px;
+  background: var(--paper);
+  overflow: hidden;
+}
+.hero__inner {
+  display: grid;
+  gap: 8px;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 11vw, 4.9rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  max-width: 11.5em;
+}
+.hero__lead {
+  margin-top: 20px;
+  max-width: 30em;
+  font-size: 1.15rem;
+  color: var(--graphite);
+}
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+.hero__visual {
+  position: relative;
+  margin: 0 calc(var(--gutter) * -1);
+}
+.hero__visual img {
+  position: relative;
+  width: 100%;
+  mix-blend-mode: multiply;
+}
+.hero__road {
+  position: absolute;
+  left: 0;
+  right: -100vw;
+  bottom: 10%;
+  height: 1.5px;
+  background: var(--black);
+  transform-origin: left;
+  animation: draw 1.4s 0.25s var(--ease) both;
+}
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+.hero__attrs {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+.hero__attrs li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0;
+  font-weight: 700;
+}
+.hero__attrs li + li {
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding-top: 72px;
+  }
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 40px;
+  }
+  .hero__actions {
+    flex-direction: row;
+  }
+  .hero__visual {
+    margin: 0 -80px 0 0;
+  }
+  .hero__attrs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .hero__attrs li {
+    justify-content: center;
+    padding: 24px 0;
+  }
+  .hero__attrs li + li {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+}
+@media (min-width: 1280px) {
+  .hero__visual {
+    margin-right: -140px;
+  }
+}
+
+/* ---------- Catálogo ---------- */
+.catalog {
+  padding-block: 56px 80px;
+  background: var(--white);
+}
+@media (min-width: 900px) {
+  .catalog {
+    padding-block: 80px 112px;
+  }
+}
+.catalog__tools {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.catalog__tools .brand-filter {
+  margin-bottom: 0;
+}
+.catalog__search input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+.catalog__search input:focus-visible {
+  outline: none;
+  border-color: var(--black);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.18);
+}
+.catalog__count {
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.catalog__empty {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  padding: 40px 0;
+}
+@media (min-width: 900px) {
+  .catalog__tools {
+    grid-template-columns: 1fr 280px;
+    align-items: center;
+  }
+}
+.catalog__grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .catalog__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ---------- Financiación ---------- */
+.financing {
+  padding-block: 72px;
+  background: var(--paper);
+  color: var(--black);
+}
+.financing__inner {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+.financing h2 {
+  font-size: clamp(2rem, 6.5vw, 3.4rem);
+  max-width: 14em;
+}
+.financing__text {
+  margin: 20px 0 32px;
+  max-width: 34em;
+  font-size: 1.1rem;
+  color: var(--graphite);
+}
+.financing__dni {
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  background: var(--black);
+  color: var(--white);
+  border: 0;
+  border-radius: var(--radius-lg);
+}
+.financing__dni p {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.financing__dni small {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+@media (min-width: 900px) {
+  .financing {
+    padding-block: 104px;
+  }
+  .financing__inner {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 80px;
+  }
+  .financing__dni {
+    padding: 36px;
+  }
+  .financing__dni p {
+    font-size: 1.8rem;
+  }
+}
+
+/* ---------- Cómo funciona ---------- */
+.how {
+  background: var(--white);
+}
+.how__steps {
+  display: grid;
+  gap: 0;
+  border-top: 1.5px solid var(--black);
+}
+.how__step {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding: 28px 0 28px;
+  border-bottom: 1px solid var(--line);
+}
+.how__num {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+.how__step h3 {
+  font-size: 1.4rem;
+}
+.how__step p {
+  color: var(--muted);
+  max-width: 26em;
+}
+@media (min-width: 900px) {
+  .how__steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .how__step {
+    padding-top: 32px;
+    border-bottom: 0;
+  }
+}
+
+/* ---------- Formulario ---------- */
+.lead {
+  padding-block: 72px;
+  background: var(--black);
+  color: var(--white);
+}
+.lead__inner {
+  display: grid;
+  gap: 36px;
+}
+.lead__intro h2 {
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+}
+.lead__intro > p {
+  margin-top: 18px;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 24em;
+}
+.lead__points {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+.lead__points li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: rgba(255, 255, 255, 0.9);
+}
+.lead__points svg {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.lead__wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding-block: 10px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+.lead__card {
+  padding: 24px 20px;
+  background: var(--white);
+  color: var(--black);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
+}
+.lead__card .field input,
+.lead__card .field select {
+  background: var(--paper);
+  border-color: transparent;
+  min-height: 56px;
+}
+.lead__card .field select:disabled {
+  background: #ebebe8;
+  color: var(--muted);
+}
+.lead__card .field input:hover,
+.lead__card .field select:hover {
+  border-color: var(--black);
+}
+.lead__card .field.has-error input,
+.lead__card .field.has-error select {
+  border-color: var(--error);
+}
+.lead__card .field input:focus-visible,
+.lead__card .field select:focus-visible {
+  background: var(--white);
+}
+@media (min-width: 640px) {
+  .lead__card {
+    padding: 40px;
+  }
+}
+@media (min-width: 900px) {
+  .lead {
+    padding-block: 120px;
+  }
+}
+@media (min-width: 960px) {
+  .lead__inner {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .lead__intro {
+    position: sticky;
+    top: calc(var(--header-h) + 40px);
+  }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding-top: 64px;
+  background: var(--black);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--white);
+}
+.footer__top {
+  display: grid;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+.footer__brand p {
+  margin: 20px 0 24px;
+  color: rgba(255, 255, 255, 0.72);
+}
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer__title {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.footer__info {
+  display: grid;
+  gap: 18px;
+}
+.footer__info li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.footer__info svg {
+  margin-top: 3px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.footer__info small {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer__info em {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-block: 24px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+.footer__bottom a {
+  text-underline-offset: 3px;
+}
+.footer__privacy {
+  max-width: 1200px;
+  padding-bottom: 24px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+@media (min-width: 900px) {
+  .footer__top {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+  }
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer__brand .logo {
+  height: 56px;
+  width: auto;
+}
